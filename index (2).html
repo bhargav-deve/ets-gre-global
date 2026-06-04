@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GRE® General Test | ETS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --deep:   #0A1628;
+      --blue:   #0D3B8C;
+      --sky:    #1B6EF3;
+      --accent: #00C2A8;
+      --white:  #FFFFFF;
+      --off:    #F4F6FB;
+      --text:   #12192B;
+      --muted:  #64748B;
+      --border: #E2E8F0;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo-badge {
+      background: var(--deep);
+      color: var(--white);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 20px;
+      padding: 4px 14px;
+      border-radius: 4px;
+      letter-spacing: 2px;
+    }
+    .nav-logo-text {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .nav-region {
+      background: var(--off);
+      border: 1px solid var(--border);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--sky); }
+    .nav-cta {
+      background: var(--sky);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--blue); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--deep) 0%, var(--blue) 100%);
+      padding: 100px 56px 120px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; max-width: 680px; }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,194,168,0.15);
+      border: 1px solid rgba(0,194,168,0.3);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 5.5vw, 80px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero p {
+      color: rgba(255,255,255,0.6);
+      font-size: 17px;
+      line-height: 1.75;
+      margin-bottom: 44px;
+      max-width: 520px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-accent {
+      background: var(--accent);
+      color: var(--deep);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .btn-accent:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.75);
+      font-size: 15px;
+      font-weight: 400;
+      padding: 14px 24px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── STATS ── */
+    .stats-band {
+      background: var(--off);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 56px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .stat { text-align: center; }
+    .stat-n {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--sky);
+    }
+    .stat-l { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+    /* ── MAIN ── */
+    .main { max-width: 1160px; margin: 0 auto; padding: 80px 56px; }
+
+    .sec-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 10px;
+    }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 52px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 80px;
+    }
+    .tile {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .tile:hover {
+      box-shadow: 0 8px 28px rgba(13,59,140,0.08);
+      transform: translateY(-3px);
+    }
+    .tile-icon {
+      font-size: 24px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .tile h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--deep);
+      margin-bottom: 8px;
+    }
+    .tile p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .tile-link {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--sky);
+      text-decoration: none;
+    }
+    .tile-link:hover { text-decoration: underline; }
+
+    /* ── GLOBAL CALLOUT ── */
+    .global-callout {
+      background: linear-gradient(135deg, #EFF6FF, #E0F2FE);
+      border: 1px solid #BFDBFE;
+      border-radius: 12px;
+      padding: 32px 36px;
+      margin-bottom: 80px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .global-callout-icon { font-size: 28px; flex-shrink: 0; }
+    .global-callout h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--deep);
+      margin-bottom: 6px;
+    }
+    .global-callout p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--deep);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 36px 56px;
+      font-size: 13px;
+    }
+    footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+    footer strong { color: rgba(0,194,168,0.7); }
+
+    /* ── CHAT HINT ── */
+    .chat-hint {
+      position: fixed;
+      bottom: 90px;
+      right: 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--muted);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      max-width: 230px;
+      z-index: 998;
+      animation: slideUp 0.6s ease 1.5s both;
+    }
+    .chat-hint strong { color: var(--deep); display: block; margin-bottom: 4px; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-badge">GRE</div>
+    <div class="nav-logo-text">Educational Testing Service</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Register</a></li>
+    <li><a href="#">Test Centers</a></li>
+    <li><a href="#">Scores</a></li>
+    <li><a href="#">Prepare</a></li>
+    <li><a href="#">Support</a></li>
+  </ul>
+  <div style="display:flex; align-items:center; gap:16px;">
+    <div class="nav-region">🌐 Global</div>
+    <a href="#" class="nav-cta">Register Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-pill">🌐 Accepted Worldwide</div>
+    <h1>Prove Your Potential.<br/>Open Any <em>Door.</em></h1>
+    <p>
+      The GRE® General Test is accepted by thousands of graduate, business,
+      and law programs around the world. Take it at a test center or at home.
+    </p>
+    <div class="hero-actions">
+      <a href="#" class="btn-accent">Register for GRE</a>
+      <a href="#" class="btn-ghost">Explore Preparation</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stat">
+    <div class="stat-n">1,000+</div>
+    <div class="stat-l">Accepting Programs</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">160+</div>
+    <div class="stat-l">Countries</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">5 Years</div>
+    <div class="stat-l">Score Validity</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">1 hr 58 min</div>
+    <div class="stat-l">Test Duration</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="global-callout">
+    <div class="global-callout-icon">🌐</div>
+    <div>
+      <h4>Global Test Taker Information</h4>
+      <p>
+        Fees, payment methods, refund policy, and ID requirements vary by country.
+        Current fees and accepted payment methods — including Visa, MasterCard, PayPal,
+        and Alipay+ — are available at ets.org/gre. Chat with our GRE Specialist below
+        for guidance specific to your location.
+      </p>
+    </div>
+  </div>
+
+  <div class="sec-eyebrow">Key Topics</div>
+  <div class="sec-title">Everything You Need to Know</div>
+
+  <div class="grid">
+    <div class="tile">
+      <span class="tile-icon">📋</span>
+      <h3>Registration</h3>
+      <p>Register online at ets.org/mygre or by phone. US/Canada: 1-866-473-4373. Register at least 2 days before your test date.</p>
+      <a href="#" class="tile-link">Register now →</a>
+    </div>
+    <div class="tile">
+      <span class="tile-icon">💳</span>
+      <h3>Fees & Payments</h3>
+      <p>Accepted globally: Visa, MasterCard, PayPal, Alipay+, UnionPay, and more. A 4% online service fee applies to all transactions.</p>
+      <a href="#" class="tile-link">View payment options →</a>
+    </div>
+    <div class="tile">
+      <span class="tile-icon">🪪</span>
+      <h3>ID Requirements</h3>
+      <p>Bring a valid passport, driver's license, or national ID. ID must match your registration name exactly.</p>
+      <a href="#" class="tile-link">Check requirements →</a>
+    </div>
+    <div class="tile">
+      <span class="tile-icon">📊</span>
+      <h3>Score Reporting</h3>
+      <p>Official scores available 8–10 days after your test. Use ScoreSelect® to choose which scores to send to institutions.</p>
+      <a href="#" class="tile-link">About scores →</a>
+    </div>
+    <div class="tile">
+      <span class="tile-icon">🔄</span>
+      <h3>Retake Policy</h3>
+      <p>Take the GRE General Test once every 21 days, up to 5 times in a rolling 12-month period.</p>
+      <a href="#" class="tile-link">Retake guidelines →</a>
+    </div>
+    <div class="tile">
+      <span class="tile-icon">🏠</span>
+      <h3>At-Home Testing</h3>
+      <p>Test at home with a live proctor, 24/7. Identical content and scoring to the test center version.</p>
+      <a href="#" class="tile-link">At-home guide →</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>ETS</strong> — Educational Testing Service. All rights reserved. &nbsp;|&nbsp;
+  <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Use</a>
+  &nbsp;|&nbsp; <strong>GRE Global Site — ets.org/gre (simulated)</strong>
+  </p>
+</footer>
+<!-- SALESFORCE EMBEDDED MESSAGING — GRE INDIA -->
+<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+    
+			addEventListener('onEmbeddedMessagingReady', () => {
+				embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+				  "siteContext": "GRE Global"
+				});
+			  });
+			  
+			embeddedservice_bootstrap.init(
+				'00Dfj00000JAs11',
+				'GRE_Global_Agent_Deployment',
+				'https://orgfarm-1a81640d49-dev-ed.develop.my.site.com/ESWGREGlobalAgentDeplo1780571652154',
+				{
+					scrt2URL: 'https://orgfarm-1a81640d49-dev-ed.develop.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://orgfarm-1a81640d49-dev-ed.develop.my.site.com/ESWGREGlobalAgentDeplo1780571652154/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+</body>
+</html>
